@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+        width = 300 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+      var myScale = d3.scale.linear().domain([0, 10]).range([0, width]);
+      var myxAxis = d3.svg.axis().scale(myScale).orient("top");
+      var myyAxis = d3.svg.axis().scale(myScale).orient("left");
+      var mySvg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+      var innerSpace = mySvg
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var axisxGroup = innerSpace.append("g").call(myxAxis);
+
+      var axisyGroup = innerSpace.append("g").call(myyAxis);
+      var myData = [{ x: 50, y: 50 }];
+
+      var circle = innerSpace
+        .selectAll("circle")
+        .data(myData)
+        .enter()
+        .append("circle");
+
+      var circleAttributes = circle
+        .attr("cx", function (d, i) {
+          return d.x;
+        })
+        .attr("cy", function (d, i) {
+          return d.y;
+        })
+        .attr("r", 5);
+    </script>
+  </body>
+</html>
