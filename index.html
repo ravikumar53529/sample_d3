@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3.js</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <span>hello iam span </span>
+    <p>hai iam a paragrph</p>
+    <h1>heelo</h1>
+    <p class="test">test class</p>
+
+    <p class="test">test class</p>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+    </ul>
+    <div class="circle"></div>
+    <script>
+      d3.selectAll("p").append("hr");
+      d3.select("body").insert("hr");
+      //it addes line at top of the span
+      d3.select("body").insert("hr", "span");
+      d3.select("p").text("hello iam para");
+      //insert h1
+      d3.select("body")
+        .append("h1")
+        .text("hai iam d3 append")
+        .style("color", "red");
+      console.log(d3);
+      let canvas = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500);
+      let circle1 = canvas
+        .append("circle")
+        .attr("cx", 250)
+        .attr("cy", 250)
+        .attr("r", 50)
+        .attr("fill", "red");
+      //   let rectangle = canvas
+      //     .append("rect")
+      //     .attr("width", 100)
+      //     .attr("height", 50)
+      //     .attr("fill", "green");
+      let line = canvas
+        .append("line")
+        .attr("x1", 0)
+        .attr("y1", 100)
+        .attr("x2", 400)
+        .attr("y2", 300)
+        .attr("stroke", "blue")
+        .attr("stroke-width", 10);
+      dataArray = [20, 30, 50, 30, 70];
+      let bars = canvas
+        .selectAll("rect")
+        .data(dataArray)
+        .enter()
+        .append("rect")
+        .attr("width", function (d) {
+          return d * 10;
+        })
+        .attr("height", 50)
+        .attr("y", function (d, i) {
+          return i * 100;
+        });
+      let circleDiv = d3.select(".circle");
+      let svgC = circleDiv.append("svg").attr("width", 100).attr("height", 100);
+      let circleSelection = svgC
+        .append("circle")
+        .attr("cx", "50")
+        .attr("cy", "50")
+        .attr("r", "50")
+        .style("fill", "green");
+    </script>
+  </body>
+</html>
