@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 arrays</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <div class="external_data"></div>
+    <script>
+      let data = [50, 20];
+      let canvas = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 400)
+        .attr("height", 400);
+
+      let circle1 = canvas
+        .append("circle")
+        .attr("cx", 50)
+        .attr("cy", 100)
+        .attr("r", 25);
+      let circle2 = canvas
+        .selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", 50)
+        .attr("cy", 50)
+        .attr("r", 25);
+      // circle1.transition().attr("cx", 150).duration(1500).delay(2000);
+      circle2
+        .transition()
+        .attr("cy", 300)
+        .duration(1000)
+        .delay(2000)
+        .each("start", function () {
+          d3.select(this).attr("fill", "red");
+        });
+      d3.csv("data.csv", function (data) {
+        console.log(data);
+        let canvas1 = d3
+          .select(".external_data")
+          .append("svg")
+          .attr("width", 500)
+          .attr("height", 500);
+        canvas1
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("width", function (d) {
+            return d.age * 10;
+          })
+          .attr("height", 40)
+          .attr("y", function (d, i) {
+            return i * 50;
+          })
+          .attr("fill", "red");
+        canvas1
+          .selectAll("text")
+          .data(data)
+          .enter()
+          .append("text")
+          .attr("fill", "white")
+          .attr("y", function (d, i) {
+            return i * 50 + 30;
+          })
+          .text(function (d) {
+            return d.name;
+          });
+      });
+    </script>
+  </body>
+</html>

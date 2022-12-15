@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+        width = 300 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+      var myScale = d3.scale.linear().domain([0, 10]).range([0, width]);
+      var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+        width = 300 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+      var myScale = d3.scale.linear().domain([0, 10]).range([0, width]);
+      var myxAxis = d3.svg.axis().scale(myScale).orient("top");
+      var myyAxis = d3.svg.axis().scale(myScale).orient("left");
+      var mySvg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+      var innerSpace = mySvg
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var axisxGroup = innerSpace.append("g").call(myxAxis);
+
+      var axisyGroup = innerSpace.append("g").call(myyAxis);
+      var myData = [10, 20];
+
+      var rect = innerSpace
+        .selectAll("rect")
+        .data(myData)
+        .enter()
+        .append("rect");
+
+      var circleAttributes = rect
+        .attr("width", function (d, i) {
+          return d * 10;
+        })
+        .attr("height", function (d, i) {
+          return 20;
+        })
+        .attr("y", function (d, i) {
+          return i * 50;
+        })
+        .attr("fill", "red");
+      circleAttributes
+        .selectAll("text")
+        .data(data)
+        .append("text")
+        .attr("fill", "black")
+        .attr("y", function (d, i) {
+          return i * 50;
+        })
+        .text(function (d) {
+          return "ravi";
+        });
+    </script>
+  </body>
+</html>

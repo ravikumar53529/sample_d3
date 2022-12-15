@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let svgElement = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 1000)
+        .attr("height", 1000);
+      let groupElement = svgElement.append("g");
+      let cricle_1 = groupElement
+        .append("circle")
+        .attr("cx", 100)
+        .attr("cy", 100)
+        .attr("r", 50);
+      let circle_2 = groupElement
+        .append("circle")
+        .attr("cx", 200)
+        .attr("cy", 200)
+        .attr("r", 50);
+
+      let rectagle_1 = svgElement
+        .append("rect")
+        .attr("x", 300)
+        .attr("y", 300)
+        .attr("width", 200)
+        .attr("height", 50);
+      let rectangle_2 = svgElement
+        .append("rect")
+        .attr("x", 400)
+        .attr("y", 400)
+        .attr("width", 200)
+        .attr("height", 50);
+      groupElement.attr("fill", "red");
+      groupElement.attr("transform", "translate(200,200)");
+      svgElement.attr("fill", "green");
+      svgElement
+        .append("text")
+        .attr("x", 100)
+        .attr("y", 100)
+        .attr("font-size", 150)
+        .attr("font-family", "sans-serif")
+        .text("google");
+    </script>
+  </body>
+</html>

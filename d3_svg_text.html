@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+      data = [
+        {
+          country_name: "india",
+          population: "20",
+        },
+        {
+          country_name: "china",
+          population: "15",
+        },
+        {
+          country_name: "america",
+          population: "10",
+        },
+        {
+          country_name: "england",
+          population: "8",
+        },
+      ];
+      let svgContainer = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500);
+
+      let circles = svgContainer
+        .selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle");
+
+      circles
+        .attr("cx", function (d, i) {
+          return (i + 1) * 25;
+        })
+        .attr("cy", function (d, i) {
+          return (i + 1) * 25;
+        })
+        .attr("r", function (d, i) {
+          return d.population;
+        });
+
+      let circleLabels = svgContainer
+        .selectAll("text")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("fill", "red");
+      circleLabels
+        .attr("x", function (d, i) {
+          return (i + 1.8) * 25;
+        })
+        .attr("y", function (d, i) {
+          return (i + 1) * 25;
+        });
+      circleLabels.text(function (d) {
+        return d.country_name;
+      });
+    </script>
+  </body>
+</html>

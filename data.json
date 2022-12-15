@@ -1,0 +1,17 @@
+[
+    {
+        "name":"raju","age":30
+    },
+    {
+         "name":"mahesh","age":25
+     },
+     {
+        "name":"ramu","age":34
+     },
+     {
+        "name":"mani","age":40
+     },
+     {
+        "name":"rakesh","age":50
+     }
+]
